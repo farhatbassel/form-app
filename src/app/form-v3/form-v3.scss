@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pending-message {
+  color: orange;
+  margin: 0;
+}
+
+.error-message {
+  margin: 0;
+  color: red;
+}

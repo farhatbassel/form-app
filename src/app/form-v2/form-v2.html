@@ -1,0 +1,24 @@
+<h1> Signal Forms </h1>
+
+<form>
+  <app-input [label]="'Username'" [formField]="loginForm.username" [type]="'text'"/>
+  <app-input [label]="'Password'" [formField]="loginForm.password" [type]="'password'"/>
+  <div>
+  <app-input [label]="'Reenter Password'" [formField]="loginForm.recheckPassword" [type]="'password'"/>
+    @if (loginForm.recheckPassword().dirty()) {
+      @for (error of loginForm().errors(); track error.kind) {
+          @if (error.kind === 'password') {
+              <p class="error-message">{{ error.message }}</p>
+          }
+      }
+    }
+  </div>
+</form>
+
+@if (loginForm().invalid()){
+  Form is invalid
+} @else {
+  Form is valid
+}
+
+<button (click)="onSubmit()">Submit</button>
