@@ -1,24 +1,34 @@
 <h1> Signal Forms </h1>
 
 <form>
-  <app-input [label]="'Username'" [formField]="loginForm.username" [type]="'text'"/>
-  <app-input [label]="'Password'" [formField]="loginForm.password" [type]="'password'"/>
-  <div>
-  <app-input [label]="'Reenter Password'" [formField]="loginForm.recheckPassword" [type]="'password'"/>
-    @if (loginForm.recheckPassword().dirty()) {
-      @for (error of loginForm().errors(); track error.kind) {
-          @if (error.kind === 'password') {
-              <p class="error-message">{{ error.message }}</p>
-          }
+  <div class="input-wrapper">
+    <app-input [label]="'Username'" [formField]="loginForm.username" [type]="'text'"/>
+  </div>
+  <div class="input-wrapper">
+    <app-input [label]="'Password'" [formField]="loginForm.password" [type]="'password'"/>
+  </div>
+  <div class="input-wrapper">
+    <app-input [label]="'Reenter Password'" [formField]="loginForm.recheckPassword" [type]="'password'"/>
+      @if (loginForm.recheckPassword().dirty()) {
+        @for (error of loginForm().errors(); track error.kind) {
+            @if (error.kind === 'password') {
+                <p class="error-message">{{ error.message }}</p>
+            }
+        }
       }
-    }
   </div>
 </form>
 
-@if (loginForm().invalid()){
-  Form is invalid
-} @else {
-  Form is valid
+@if (loginForm().dirty()) {
+  @if (loginForm().invalid()){
+    <h3 class="error-message">
+      Form is invalid
+    </h3>
+  } @else {
+    <h3 class="success-message">
+      Form is valid
+    </h3>
+  }
 }
 
-<button (click)="onSubmit()">Submit</button>
+<button class="submit" (click)="onSubmit()">Submit</button>

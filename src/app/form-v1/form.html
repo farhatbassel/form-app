@@ -1,15 +1,27 @@
 <h1> Reactive Forms </h1>
 
 <form [formGroup]="formGroup">
-  <app-input [label]="'Username'" [formControlName]="'username'" [type]="'text'"/>
-  <app-input [label]="'Password'" [formControlName]="'password'" [type]="'password'"/>
-  <app-input [label]="'Reenter Password'" [formControlName]="'recheckPassword'" [type]="'password'"/>
+  <div class="input-wrapper">
+    <app-input [label]="'Username'" [formControlName]="'username'" [type]="'text'"/>
+  </div>
+  <div class="input-wrapper">
+    <app-input [label]="'Password'" [formControlName]="'password'" [type]="'password'"/>
+  </div>
+  <div class="input-wrapper">
+    <app-input [label]="'Reenter Password'" [formControlName]="'recheckPassword'" [type]="'password'"/>
+  </div>
 </form>
 
-@if (formGroup.invalid){
-  Form is invalid
-} @else {
-  Form is valid
+@if (formGroup.dirty) {
+  @if (formGroup.invalid){
+    <h3 class="error-message">
+      Form is invalid
+    </h3>
+  } @else {
+    <h3 class="success-message">
+      Form is valid
+    </h3>
+  }
 }
 
-<button (click)="onSubmit()">Submit</button>
+<button class="submit" (click)="onSubmit()">Submit</button>

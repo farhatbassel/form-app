@@ -1,10 +1,10 @@
 <h1> Async Signal Forms </h1>
 
 <form>
-  <div>
+  <div class="input-wrapper">
     <app-input [label]="'Username'" [formField]="loginForm.username" [type]="'text'"/>
     @if (loginForm.username().pending()) {
-      <p class="pending-message">Form is being validated...</p>
+      <p class="pending-message">Username being checked...</p>
     }
     @if (loginForm.username().dirty()) {
       @for (error of loginForm.username().errors(); track error.kind) {
@@ -14,9 +14,11 @@
       }
     }
   </div>
-  <app-input [label]="'Password'" [formField]="loginForm.password" [type]="'password'"/>
-  <div>
-    <app-input [label]="'Reenter Password'" [formField]="loginForm.recheckPassword" [type]="'password'"/>
+  <div class="input-wrapper">
+    <app-input [label]="'Password'" [formField]="loginForm.password" [type]="'password'"/>
+  </div>
+  <div class="input-wrapper">
+    <app-input [label]="'Re-enter Password'" [formField]="loginForm.recheckPassword" [type]="'password'"/>
     @if (loginForm.recheckPassword().dirty()) {
       @for (error of loginForm().errors(); track error.kind) {
           @if (error.kind === 'password') {
@@ -27,10 +29,20 @@
   </div>
 </form>
 
-@if (loginForm().invalid()) {
-  Form is invalid
-} @else {
-  Form is valid
+@if (loginForm().dirty()) {
+   @if (loginForm().pending()) {
+    <h3 class="pending-message">
+      Validation is running...
+    </h3>
+  } @else if (loginForm().invalid()) {
+    <h3 class="error-message">
+      Form is invalid
+    </h3>
+  } @else {
+    <h3 class="success-message">
+      Form is valid
+    </h3>
+  }
 }
 
-<button (click)="onSubmit()">Submit</button>
+<button class="submit" (click)="onSubmit()">Submit</button>

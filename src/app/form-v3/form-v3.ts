@@ -24,13 +24,13 @@ export class FormV3 {
       if (value().password !== value().recheckPassword) {
         return {
           kind: 'password',
-          message: 'Recheck password should be the same as password',
+          message: 'Passwords not matching',
         }
       }
       return null;
     }))
 
-    debounce(schemaPath.username, 500);
+    debounce(schemaPath.username, 300);
 
     validateAsync(schemaPath.username, {
       params(ctx) {
