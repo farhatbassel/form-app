@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.input__wrapper {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}

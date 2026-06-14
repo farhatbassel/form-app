@@ -1,4 +1,4 @@
-<h1> Async Signal Forms </h1>
+<h1> Conditional Signal Forms </h1>
 
 <form>
   <div class="input-wrapper">
@@ -14,19 +14,23 @@
       }
     }
   </div>
+  @if (!loginForm.password().hidden()) {
   <div class="input-wrapper">
     <app-input [label]="'Password'" [formField]="loginForm.password" [type]="'password'"/>
   </div>
-  <div class="input-wrapper">
-    <app-input [label]="'Re-enter Password'" [formField]="loginForm.recheckPassword" [type]="'password'"/>
-    @if (loginForm.recheckPassword().dirty()) {
-      @for (error of loginForm().errors(); track error.kind) {
-          @if (error.kind === 'password') {
-              <p class="error-message">{{ error.message }}</p>
-          }
+  }
+  @if (!loginForm.recheckPassword().hidden()) {
+    <div class="input-wrapper">
+      <app-input [label]="'Re-enter Password'" [formField]="loginForm.recheckPassword" [type]="'password'"/>
+      @if (loginForm.recheckPassword().dirty()) {
+        @for (error of loginForm().errors(); track error.kind) {
+            @if (error.kind === 'password') {
+                <p class="error-message">{{ error.message }}</p>
+            }
+        }
       }
+    </div>
     }
-  </div>
 </form>
 
 @if (loginForm().dirty()) {
@@ -45,7 +49,7 @@
   }
 }
 
-<button class="submit" (click)="onSubmit()">Submit</button>
+<button class="submit" type="submit" (click)="onSubmit()">Submit</button>
 
 <div>
   <h4>Features:</h4>

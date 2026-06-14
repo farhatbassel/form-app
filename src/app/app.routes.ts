@@ -9,4 +9,13 @@ export const routes: Routes = [{
 }, {
   path: 'form-v3',
   loadComponent: () => import('./form-v3/form-v3').then((c) => c.FormV3)
+}, {
+  path: 'form-v4',
+  loadComponent: () => import('./form-v4/form-v4').then((c) => c.FormV4)
+}, {
+  path: 'form-v5',
+  loadComponent: () => import('./form-v5/form-v5').then((c) => c.FormV5)
+}, {
+  path: '**',
+  loadComponent: () => import('./start-page/start-page').then((c) => c.StartPage)
 }];

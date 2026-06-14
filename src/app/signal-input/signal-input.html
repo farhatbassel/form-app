@@ -1,0 +1,8 @@
+<div class="input__wrapper">
+  <label> {{ label() }} </label>
+  <input
+    [value]="value()"
+    (input)="value.set($event.target.value)"
+    [type]="type()"
+  />
+</div>

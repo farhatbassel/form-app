@@ -2,13 +2,13 @@
 
 <form [formGroup]="formGroup">
   <div class="input-wrapper">
-    <app-input [label]="'Username'" [formControlName]="'username'" [type]="'text'"/>
+    <app-signal-input [label]="'Username'" [formControlName]="'username'" [type]="'text'"/>
   </div>
   <div class="input-wrapper">
-    <app-input [label]="'Password'" [formControlName]="'password'" [type]="'password'"/>
+    <app-signal-input [label]="'Password'" [formControlName]="'password'" [type]="'password'"/>
   </div>
   <div class="input-wrapper">
-    <app-input [label]="'Reenter Password'" [formControlName]="'recheckPassword'" [type]="'password'"/>
+    <app-signal-input [label]="'Reenter Password'" [formControlName]="'recheckPassword'" [type]="'password'"/>
   </div>
 </form>
 
@@ -24,11 +24,14 @@
   }
 }
 
+<pre>Form Value {{ form().value() | json }}</pre>
+
 <button class="submit" (click)="onSubmit()">Submit</button>
 
 <div>
   <h4>Features:</h4>
   <ul>
-    <li> Just basic setup with ControlValueAccessor </li>
+    <li> Migration from reactive forms to signal forms</li>
+    <li> Utilize the new FormControlValue instead of ControlValueAccessor </li>
   </ul>
 </div>
